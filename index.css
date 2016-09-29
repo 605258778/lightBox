@@ -11,6 +11,7 @@
 	opacity: 0.5;
 	filter: alpha(opacity=50%);
 	z-index: 1000;
+	display: none;
 }
 #light-popup{
 	position: fixed;
@@ -19,6 +20,7 @@
 	top: 50px;
 	z-index: 1001;
 	margin-left: -200px;
+	display: none;
 }
 .light-images{
 	width: 100%;
