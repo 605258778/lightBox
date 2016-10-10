@@ -61,6 +61,7 @@
 	background-color:rgba(0,0,0,0.5);
 	margin: 0 5px;
 	margin-top: -60px;
+	z-index: 2;
 }
 #light-popup > .light-pic-caption > .light-caption-area{
 	color: #fff;

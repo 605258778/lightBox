@@ -29,8 +29,59 @@
             }
             self.initPopup($(this));
         });
+        this.popupMask.click(function(){
+            $(this).fadeOut();
+            self.popupWin.fadeOut();
+        })
+        this.closeBtn.click(function(){
+            self.popupMask.fadeOut();
+            self.popupWin.fadeOut();
+        })
+        this.nextBtn.hover(function(){
+            if(!$(this).hasClass("disabled")&&self.groupData.length>1){
+                $(this).addClass("light-btn-next-show");
+            }
+        },function(){
+            if(!$(this).hasClass("disabled")&&self.groupData.length>1){
+                $(this).removeClass("light-btn-next-show");
+            }
+        }).click(function(e){
+            if(!$(this).hasClass("disabled")){
+                e.stopPropagation();
+                self.goto("next");
+            }
+        })
+        this.prevBtn.hover(function(){
+            if(!$(this).hasClass("disabled")&&self.groupData.length>1){
+                $(this).addClass("light-btn-prev-show");
+            }
+        },function(){
+            if(!$(this).hasClass("disabled")&&self.groupData.length>1){
+                $(this).removeClass("light-btn-prev-show");
+            }
+        }).click(function(e){
+            if(!$(this).hasClass("disabled")){
+                e.stopPropagation();
+                self.goto("prev");
+            }
+        })
     };
     LightBox.prototype = {
+        goto: function(dir){
+            if(dir==="next"){
+                this.index++;
+                if(this.index>=this.groupData.length-1){
+                    this.nextBtn.addClass("disabled").removeClass("light-btn-next-show");
+                }
+                if(this.index!=0){
+                    this.prevBtn.removeClass("disabled");
+                }
+                var src = this.groupData[this.index].src;
+                this.loadPicSize(src);
+            }else if(dir==="prev"){
+                alert("2");
+            }
+        },
         initPopup: function(curentObj) {
             var self = this,
                 sourceSrc = curentObj.attr("data-source"),
@@ -40,6 +91,7 @@
         },
         showMaskAndPopup: function(sourceSrc, curentId) {
             self = this;
+            self.popupPic.css({width:"auto",height:"auto"});
             this.popupPic.hide();
             this.picCaptionArea.hide();
             this.popupMask.fadeIn();
@@ -68,7 +120,6 @@
             }
         },
         loadPicSize: function(sourceSrc){
-
         	this.preLoadImg(sourceSrc,function(){
         		self.popupPic.attr("src",sourceSrc);
         		var picWidth = self.popupPic.width(),
