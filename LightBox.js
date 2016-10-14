@@ -79,7 +79,15 @@
                 var src = this.groupData[this.index].src;
                 this.loadPicSize(src);
             }else if(dir==="prev"){
-                alert("2");
+                this.index--;
+                if(this.index<=0){
+                    this.prevBtn.addClass("disabled").removeClass("light-btn-prev-show")
+                }
+                if(this.index!=this.groupData.length-1){
+                    this.nextBtn.removeClass("disabled");
+                }
+                var src = this.groupData[this.index].src;
+                this.loadPicSize(src);
             }
         },
         initPopup: function(curentObj) {
