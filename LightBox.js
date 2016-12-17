@@ -120,7 +120,7 @@
             		this.nextBtn.removeClass("disabled");
             	}else if(this.index === groupDataLength-1){
             		this.nextBtn.addClass("disabled");
-            		this.prevBtn.removeClass(disabled);
+            		this.prevBtn.removeClass("disabled");
             	}else{
             		this.nextBtn.removeClass("disabled");
             		this.prevBtn.removeClass("disabled");
